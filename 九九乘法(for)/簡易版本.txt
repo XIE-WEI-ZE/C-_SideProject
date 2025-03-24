@@ -1,0 +1,119 @@
+case1. 最簡單的方式
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        for (int i = 1; i <= 9; i++)
+        {
+            for (int j = 2; j <= 9; j++)
+            {
+                int re = i * j;
+                string result = re.ToString().Length == 1 ? re + " " : re.ToString();
+                Console.Write($"{j} * {i} = {result}\t");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+case2. 矩陣輸出
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] multiplicationTable = new int[9, 8];
+        for (int i = 1; i <= 9; i++)
+        {
+            for (int j = 2; j <= 9; j++)
+            {
+                multiplicationTable[i-1,j-2] = i * j;
+            }
+            
+        }
+        for (int i = 1; i <= 9; i++)
+        {
+            for (int j = 2; j <= 9; j++) { 
+                int re = multiplicationTable[i - 1, j - 2];
+                string result = re.ToString().PadLeft(2,' ');
+                Console.Write($"{j} x {i} = {result}\t");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+case3. foreach輸出
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] multiplicationTable = new int[9, 8];
+
+        // 填入矩陣
+        for (int i = 1; i <= 9; i++)
+        {
+            for (int j = 2; j <= 9; j++)
+            {
+                multiplicationTable[i - 1, j - 2] = i * j;
+            }
+        }
+
+        // 用 foreach 印出矩陣
+        int row = 0, col = 0;
+        foreach (int re in multiplicationTable)
+        {
+            int i = row + 1; // 對應被乘數
+            int j = col + 2; // 對應乘數
+            string result = re.ToString().PadLeft(2, ' ');
+            Console.Write($"{j} x {i} = {result}\t");
+            col++;
+            if (col == 8)
+            {
+                Console.WriteLine();
+                col = 0;
+                row++;
+            }
+        }
+    }
+}
+
+case4. List<List<int>>輸出(不用事先宣告矩陣大小)
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<List<int>> multiplicationTable = new List<List<int>>();
+        for (int i = 1; i <= 9; i++)
+        {
+            List<int> row = new List<int>();
+            for (int j = 2; j <= 9; j++)
+            {
+                row.Add(i * j);
+            }
+            multiplicationTable.Add(row);
+        }
+
+        int rowIndex = 0; 
+        foreach (List<int> row in multiplicationTable)
+        {
+            int colIndex = 2; 
+            foreach (int re in row)
+            {
+                string result = re.ToString().PadLeft(2, ' ');
+                Console.Write($"{colIndex}*{rowIndex + 1}={result}\t");
+                colIndex++;
+            }
+            Console.WriteLine();
+            rowIndex++;
+        }
+    }
+}

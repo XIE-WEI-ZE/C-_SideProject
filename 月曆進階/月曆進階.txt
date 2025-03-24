@@ -1,0 +1,425 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+class CalendarApp
+{
+    private static Dictionary<DateTime, List<string>> events = new Dictionary<DateTime, List<string>>();
+    private const string FilePath = "calendar_events.txt"; // 檔案名稱
+
+    enum MenuOption
+    {
+        ShowMonthlyCalendar = 1,
+        AddEvent,
+        ShowAllEvents,
+        UpdateEvent,
+        DeleteEvent,
+        Exit
+    }
+
+    static void Main()
+    {
+        LoadEventsFromFile(); // 程式啟動時讀取事件
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("\n選擇操作：");
+            Console.WriteLine("1. 輸入年月，查看該月份月曆");
+            Console.WriteLine("2. 新增事件");
+            Console.WriteLine("3. 顯示所有事件");
+            Console.WriteLine("4. 更新事件");
+            Console.WriteLine("5. 刪除事件");
+            Console.WriteLine("6. 離開");
+
+            Console.Write("\n請輸入選項（1-6，按 Backspace 返回）：");
+            string choice = ReadLineWithBackspace();
+            if (choice == null) return; // Backspace 返回，直接退出程序
+
+            if (Enum.TryParse(choice, out MenuOption option))
+            {
+                switch (option)
+                {
+                    case MenuOption.ShowMonthlyCalendar:
+                        ShowMonthlyCalendar();
+                        break;
+                    case MenuOption.AddEvent:
+                        AddEvent();
+                        break;
+                    case MenuOption.ShowAllEvents:
+                        ShowAllEvents();
+                        break;
+                    case MenuOption.UpdateEvent:
+                        UpdateEvent();
+                        break;
+                    case MenuOption.DeleteEvent:
+                        DeleteEvent();
+                        break;
+                    case MenuOption.Exit:
+                        Console.WriteLine("程式結束。");
+                        return;
+                    default:
+                        Console.WriteLine("無效選項，請重新輸入！");
+                        Console.ReadLine();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("無效選項，請重新輸入！");
+                Console.ReadLine();
+            }
+        }
+    }
+
+    // 從檔案載入事件
+    static void LoadEventsFromFile()
+    {
+        if (!File.Exists(FilePath)) return;
+
+        try
+        {
+            string[] lines = File.ReadAllLines(FilePath);
+            foreach (string line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
+                string[] parts = line.Split('\t');
+                if (parts.Length < 2) continue;
+
+                if (DateTime.TryParse(parts[0], out DateTime date))
+                {
+                    if (!events.TryGetValue(date, out var eventList))
+                    {
+                        eventList = new List<string>();
+                        events[date] = eventList;
+                    }
+                    eventList.Add(parts[1]);
+                }
+            }
+            Console.WriteLine("已從檔案載入事件。");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"載入事件時發生錯誤：{ex.Message}");
+        }
+    }
+
+    // 將事件儲存到檔案
+    static void SaveEventsToFile()
+    {
+        try
+        {
+            using (StreamWriter writer = new StreamWriter(FilePath))
+            {
+                foreach (var evt in events)
+                {
+                    foreach (string description in evt.Value)
+                    {
+                        writer.WriteLine($"{evt.Key:yyyy-MM-dd}\t{description}");
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"儲存事件時發生錯誤：{ex.Message}");
+            Console.WriteLine("請檢查檔案路徑或儲存空間，按 Enter 返回...");
+            Console.ReadLine();
+        }
+    }
+
+    // 輔助方法：支持 Backspace 的輸入
+    static string ReadLineWithBackspace()
+    {
+        string input = "";
+        while (true)
+        {
+            var key = Console.ReadKey(true);
+            if (key.Key == ConsoleKey.Enter)
+            {
+                Console.WriteLine();
+                return input;
+            }
+            if (key.Key == ConsoleKey.Backspace)
+            {
+                if (input.Length > 0)
+                {
+                    input = input.Substring(0, input.Length - 1);
+                    Console.Write("\b \b");
+                }
+                else
+                {
+                    Console.WriteLine("\n返回...");
+                    return null;
+                }
+            }
+            else
+            {
+                input += key.KeyChar;
+                Console.Write(key.KeyChar);
+            }
+        }
+    }
+
+    static void ShowMonthlyCalendar()
+    {
+        Console.Write("請輸入年份（YYYY，按 Backspace 返回主選單）：");
+        string yearInput = ReadLineWithBackspace();
+        if (yearInput == null) return;
+        if (!int.TryParse(yearInput, out int year))
+        {
+            Console.WriteLine("年份格式無效！");
+            Console.ReadLine();
+            return;
+        }
+
+        Console.Write("請輸入月份（1-12，按 Backspace 返回主選單）：");
+        string monthInput = ReadLineWithBackspace();
+        if (monthInput == null) return;
+        if (!int.TryParse(monthInput, out int month) || month < 1 || month > 12)
+        {
+            Console.WriteLine("月份必須在1-12之間！");
+            Console.ReadLine();
+            return;
+        }
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine($"\n{year} 年 {month} 月");
+            Console.WriteLine("日 一 二 三 四 五 六");
+
+            DateTime firstDay = new DateTime(year, month, 1);
+            int startDay = (int)firstDay.DayOfWeek;
+            int daysInMonth = DateTime.DaysInMonth(year, month);
+
+            for (int i = 0; i < startDay; i++) Console.Write("   ");
+
+            for (int day = 1; day <= daysInMonth; day++)
+            {
+                DateTime currentDate = new DateTime(year, month, day);
+                bool hasEvent = events.ContainsKey(currentDate);
+
+                Console.ForegroundColor = hasEvent ? ConsoleColor.Yellow : ConsoleColor.White;
+                Console.Write(hasEvent ? $"[{day,2}]" : $"{day,2} ");
+                Console.ResetColor();
+
+                if ((startDay + day) % 7 == 0 || day == daysInMonth) Console.WriteLine();
+            }
+
+            Console.Write("\n輸入日期（1-31）查看事件，輸入 0 或按 `Backspace` 返回主選單：");
+            string dayInput = ReadLineWithBackspace();
+            if (dayInput == null || dayInput == "0") return;
+
+            if (int.TryParse(dayInput, out int selectedDay) && selectedDay >= 1 && selectedDay <= daysInMonth)
+            {
+                DateTime selectedDate = new DateTime(year, month, selectedDay);
+                ShowEvents(selectedDate);
+            }
+            else
+            {
+                Console.WriteLine($"無效的日期！請輸入 1 到 {daysInMonth} 之間的數字。");
+                Console.ReadLine();
+            }
+        }
+    }
+
+    static void ShowEvents(DateTime date)
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine($"\n{date:yyyy-MM-dd} 的事件：");
+
+            if (events.TryGetValue(date, out var eventList) && eventList.Count > 0)
+            {
+                for (int i = 0; i < eventList.Count; i++)
+                {
+                    Console.WriteLine($"   {i + 1}. {eventList[i]}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("目前這一天沒有事件。");
+            }
+
+            Console.Write("\n按 `Backspace` 返回月曆（其他鍵無效）：");
+            var key = Console.ReadKey(intercept: true);
+
+            if (key.Key == ConsoleKey.Backspace) return;
+        }
+    }
+
+    static void AddEvent()
+    {
+        Console.Write("請輸入事件日期（YYYY-MM-DD，按 Backspace 返回主選單）：");
+        string dateInput = ReadLineWithBackspace();
+        if (dateInput == null) return;
+
+        if (!DateTime.TryParse(dateInput, out DateTime date))
+        {
+            Console.WriteLine("日期格式無效！請使用 YYYY-MM-DD 格式");
+            Console.ReadLine();
+            return;
+        }
+
+        if (!events.TryGetValue(date, out var eventList))
+        {
+            eventList = new List<string>();
+            events[date] = eventList;
+        }
+
+        while (true)
+        {
+            Console.Write("請輸入事件內容（按 Backspace 返回主選單）：");
+            string description = ReadLineWithBackspace();
+            if (description == null) return;
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                Console.WriteLine("事件內容不能為空！");
+                Console.ReadLine();
+                continue;
+            }
+            eventList.Add(description);
+            SaveEventsToFile();
+
+            Console.Write("是否繼續新增事件？(Y/N，不分大小寫，按 Backspace 返回主選單): ");
+            string response = ReadLineWithBackspace();
+            if (response == null) return;
+            if (string.IsNullOrWhiteSpace(response)) continue; // 避免空輸入問題
+            if (response.Trim().ToUpper() != "Y")
+            {
+                Console.WriteLine("事件已新增，返回主選單...");
+                Console.ReadLine();
+                return;
+            }
+        }
+    }
+
+    static void ShowAllEvents()
+    {
+        Console.Clear();
+        if (events.Count == 0)
+        {
+            Console.WriteLine("目前沒有任何事件！");
+        }
+        else
+        {
+            foreach (var evt in events.OrderBy(e => e.Key))
+            {
+                Console.WriteLine($"\n{evt.Key:yyyy-MM-dd}");
+                for (int i = 0; i < evt.Value.Count; i++)
+                {
+                    Console.WriteLine($"   {i + 1}. {evt.Value[i]}");
+                }
+            }
+        }
+        Console.Write("\n按 `Enter` 返回主選單...");
+        Console.ReadLine();
+    }
+
+    static void UpdateEvent()
+    {
+        Console.Write("請輸入事件日期（YYYY-MM-DD，按 Backspace 返回主選單）：");
+        string dateInput = ReadLineWithBackspace();
+        if (dateInput == null) return;
+
+        if (!DateTime.TryParse(dateInput, out DateTime date))
+        {
+            Console.WriteLine("日期格式無效！");
+            Console.ReadLine();
+            return;
+        }
+
+        if (!events.TryGetValue(date, out var eventList) || eventList.Count == 0)
+        {
+            Console.WriteLine("該日期沒有事件！");
+            Console.ReadLine();
+            return;
+        }
+
+        for (int i = 0; i < eventList.Count; i++)
+        {
+            Console.WriteLine($"   {i + 1}. {eventList[i]}");
+        }
+
+        Console.Write("請輸入要修改的事件編號（按 Backspace 返回主選單）：");
+        string indexInput = ReadLineWithBackspace();
+        if (indexInput == null) return;
+
+        if (!int.TryParse(indexInput, out int index) || index < 1 || index > eventList.Count)
+        {
+            Console.WriteLine($"無效的事件編號！請輸入 1 到 {eventList.Count} 之間的數字。");
+            Console.ReadLine();
+            return;
+        }
+
+        Console.Write("請輸入新事件內容（按 Backspace 返回主選單）：");
+        string newEvent = ReadLineWithBackspace();
+        if (newEvent == null) return;
+
+        if (string.IsNullOrWhiteSpace(newEvent))
+        {
+            Console.WriteLine("事件內容不能為空！");
+            Console.ReadLine();
+            return;
+        }
+
+        eventList[index - 1] = newEvent;
+        SaveEventsToFile();
+        Console.WriteLine("事件已更新！");
+        Console.ReadLine();
+    }
+
+    static void DeleteEvent()
+    {
+        Console.Write("請輸入事件日期（YYYY-MM-DD，按 Backspace 返回主選單），或輸入 `ALL` 刪除所有事件（不分大小寫）：");
+        string input = ReadLineWithBackspace();
+        if (input == null) return;
+
+        if (string.Equals(input.Trim().ToUpper(), "ALL"))
+        {
+            events.Clear();
+            SaveEventsToFile();
+            Console.WriteLine("已刪除所有事件！");
+            Console.ReadLine();
+            return;
+        }
+
+        if (!DateTime.TryParse(input, out DateTime date) || !events.TryGetValue(date, out var eventList))
+        {
+            Console.WriteLine("日期無效或該日期無事件！");
+            Console.ReadLine();
+            return;
+        }
+
+        for (int i = 0; i < eventList.Count; i++)
+        {
+            Console.WriteLine($"   {i + 1}. {eventList[i]}");
+        }
+
+        Console.Write("請輸入要刪除的事件編號（按 Backspace 返回主選單），或輸入 `ALL` 刪除該日所有事件（不分大小寫）：");
+        input = ReadLineWithBackspace();
+        if (input == null) return;
+
+        if (string.Equals(input.Trim().ToUpper(), "ALL"))
+        {
+            events.Remove(date);
+            SaveEventsToFile();
+            Console.WriteLine("已刪除該日所有事件！");
+        }
+        else if (int.TryParse(input, out int index) && index >= 1 && index <= eventList.Count)
+        {
+            eventList.RemoveAt(index - 1);
+            SaveEventsToFile();
+            Console.WriteLine("事件已刪除！");
+            if (eventList.Count == 0) events.Remove(date);
+        }
+        else
+        {
+            Console.WriteLine($"無效的事件編號！請輸入 1 到 {eventList.Count} 之間的數字。");
+        }
+        Console.ReadLine();
+    }
+}

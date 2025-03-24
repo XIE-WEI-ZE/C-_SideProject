@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordNoteConsoleApp", "WordNoteConsoleApp\WordNoteConsoleApp.csproj", "{5D644D31-1F11-4AA8-877B-0818FC37AB88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D644D31-1F11-4AA8-877B-0818FC37AB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D644D31-1F11-4AA8-877B-0818FC37AB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D644D31-1F11-4AA8-877B-0818FC37AB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D644D31-1F11-4AA8-877B-0818FC37AB88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A0FE634-2437-4D3F-AB90-CE8BC07FBA68}
+	EndGlobalSection
+EndGlobal

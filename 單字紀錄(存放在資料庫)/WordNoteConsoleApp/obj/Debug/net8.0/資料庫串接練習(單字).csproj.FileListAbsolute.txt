@@ -1,0 +1,14 @@
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\bin\Debug\net8.0\資料庫串接練習(單字).exe
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\bin\Debug\net8.0\資料庫串接練習(單字).deps.json
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\bin\Debug\net8.0\資料庫串接練習(單字).runtimeconfig.json
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\bin\Debug\net8.0\資料庫串接練習(單字).dll
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\bin\Debug\net8.0\資料庫串接練習(單字).pdb
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\obj\Debug\net8.0\資料庫串接練習(單字).GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\obj\Debug\net8.0\資料庫串接練習(單字).AssemblyInfoInputs.cache
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\obj\Debug\net8.0\資料庫串接練習(單字).AssemblyInfo.cs
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\obj\Debug\net8.0\資料庫串接練習(單字).csproj.CoreCompileInputs.cache
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\obj\Debug\net8.0\資料庫串接練習(單字).dll
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\obj\Debug\net8.0\refint\資料庫串接練習(單字).dll
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\obj\Debug\net8.0\資料庫串接練習(單字).pdb
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\obj\Debug\net8.0\資料庫串接練習(單字).genruntimeconfig.cache
+C:\Users\jklds\source\repos\資料庫串接練習(單字)\資料庫串接練習(單字)\obj\Debug\net8.0\ref\資料庫串接練習(單字).dll

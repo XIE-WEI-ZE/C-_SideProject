@@ -1,0 +1,14 @@
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\bin\Debug\net8.0\月曆.exe
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\bin\Debug\net8.0\月曆.deps.json
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\bin\Debug\net8.0\月曆.runtimeconfig.json
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\bin\Debug\net8.0\月曆.dll
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\bin\Debug\net8.0\月曆.pdb
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\obj\Debug\net8.0\月曆.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\obj\Debug\net8.0\月曆.AssemblyInfoInputs.cache
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\obj\Debug\net8.0\月曆.AssemblyInfo.cs
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\obj\Debug\net8.0\月曆.csproj.CoreCompileInputs.cache
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\obj\Debug\net8.0\月曆.dll
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\obj\Debug\net8.0\refint\月曆.dll
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\obj\Debug\net8.0\月曆.pdb
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\obj\Debug\net8.0\月曆.genruntimeconfig.cache
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\月曆\月曆\obj\Debug\net8.0\ref\月曆.dll

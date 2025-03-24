@@ -1,0 +1,14 @@
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\bin\Debug\net8.0\九九乘法.exe
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\bin\Debug\net8.0\九九乘法.deps.json
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\bin\Debug\net8.0\九九乘法.runtimeconfig.json
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\bin\Debug\net8.0\九九乘法.dll
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\bin\Debug\net8.0\九九乘法.pdb
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\obj\Debug\net8.0\九九乘法.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\obj\Debug\net8.0\九九乘法.AssemblyInfoInputs.cache
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\obj\Debug\net8.0\九九乘法.AssemblyInfo.cs
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\obj\Debug\net8.0\九九乘法.csproj.CoreCompileInputs.cache
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\obj\Debug\net8.0\九九乘法.dll
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\obj\Debug\net8.0\refint\九九乘法.dll
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\obj\Debug\net8.0\九九乘法.pdb
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\obj\Debug\net8.0\九九乘法.genruntimeconfig.cache
+C:\Users\jklds\OneDrive\程式相關\作品\後端作品集\C#\console\九九乘法(for)\九九乘法\九九乘法\obj\Debug\net8.0\ref\九九乘法.dll
